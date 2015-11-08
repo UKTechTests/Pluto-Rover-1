@@ -11,25 +11,36 @@ public class Rover extends Vehicle {
 		super(x, y, direction, map);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Tuple<Integer, Integer> move(Directions direction) {
 		Cardinal currentDirection = getDirection();
-		int oldX = getX();
-		int oldY = getY();
-		
+
 		switch(direction) {
 			case FORWARD:
 				switch(currentDirection) {
 				case NORTH:
+					if(map.hasObstacle(getX()+1,getY())) {
+						 return new Tuple<>(getX()+1, getY());
+					}
 					x++;
 					break;
 				case SOUTH:
+					if(map.hasObstacle(getX()-1,getY())) {
+						 return new Tuple<>(getX()-1, getY());
+					}
 					x--;
 					break;
 				case EAST:
+					if(map.hasObstacle(getX(),getY()+1)) {
+						 return new Tuple<>(getX(), getY()+1);
+					}
 					y++;
 					break;
 				case WEST:
+					if(map.hasObstacle(getX(),getY()-1)) {
+						 return new Tuple<>(getX(), getY()-1);
+					}
 					y--;
 					break;
 				default:
@@ -39,15 +50,27 @@ public class Rover extends Vehicle {
 			case BACKWARDS:
 				switch(currentDirection) {
 				case NORTH:
+					if(map.hasObstacle(getX()-1,getY())) {
+						 return new Tuple<>(getX()-1, getY());
+					}
 					x--;
 					break;
 				case SOUTH:
+					if(map.hasObstacle(getX()+1,getY())) {
+						 return new Tuple<>(getX()+1, getY());
+					}
 					x++;
 					break;
 				case EAST:
+					if(map.hasObstacle(getX(),getY()-1)) {
+						 return new Tuple<>(getX(), getY()-1);
+					}
 					y--;
 					break;
 				case WEST:
+					if(map.hasObstacle(getX(),getY()+1)) {
+						 return new Tuple<>(getX(), getY()+1);
+					}
 					y++;
 					break;
 				default:
@@ -92,13 +115,7 @@ public class Rover extends Vehicle {
 			default:
 				break;
 		}
-		
-		if(map.hasObstacle(getX(),getY())) {
-			Tuple<Integer, Integer> obstacle = new Tuple<>(getX(), getY());
-			x = oldX;
-			y = oldY;
-			return obstacle;
-		}
+
 		wrapAround();
 		return null;
 	}
