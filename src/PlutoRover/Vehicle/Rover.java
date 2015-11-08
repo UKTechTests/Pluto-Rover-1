@@ -1,13 +1,14 @@
 package PlutoRover.Vehicle;
 
+import PlutoRover.Map.Map;
 import PlutoRover.Util.Cardinal;
 import PlutoRover.Util.Directions;
 import PlutoRover.Util.Tuple;
 
 public class Rover extends Vehicle {
 
-	public Rover(int x, int y, Cardinal direction) {
-		super(x, y, direction);
+	public Rover(int x, int y, Cardinal direction, Map map) {
+		super(x, y, direction, map);
 	}
 
 	@Override
@@ -89,7 +90,26 @@ public class Rover extends Vehicle {
 			default:
 				break;
 		}
+		wrapAround();
 		return null;
+	}
+	
+	private void wrapAround() {
+		if(x >= map.getHeight()) {
+			x = 0;
+		}
+		
+		if(y >= map.getWidth()) {
+			y = 0;
+		}
+		
+		if(x < 0) {
+			x = map.getHeight() - 1;
+		}
+		
+		if(y < 0) {
+			y = map.getWidth() - 1;		
+		}
 	}
 
 	@Override

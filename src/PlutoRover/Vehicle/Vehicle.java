@@ -1,5 +1,6 @@
 package PlutoRover.Vehicle;
 
+import PlutoRover.Map.Map;
 import PlutoRover.Util.Cardinal;
 import PlutoRover.Util.Directions;
 import PlutoRover.Util.Tuple;
@@ -8,11 +9,13 @@ public abstract class Vehicle {
 	int x;
 	int y;
 	Cardinal direction;
+	Map map;
 	
-	public Vehicle(int x, int y, Cardinal direction) {
+	public Vehicle(int x, int y, Cardinal direction, Map map) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
+		this.map = map;
 	}
 
 	public int getX() {
@@ -29,6 +32,10 @@ public abstract class Vehicle {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public Map getMap() {
+		return map;
 	}
 
 	public Cardinal getDirection() {
