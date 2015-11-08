@@ -48,6 +48,19 @@ public class ObstacleTesting {
 	}
 	
 	@Test
+	public void checkThatMovingAgainstNoObstacleReturnsNull() throws WrongMapValuesException {
+		Map map = new Map(5,5);
+		Rover rover = new Rover(0, 0, Cardinal.NORTH,map);
+		
+		assertEquals(rover.getX(), 0);
+		assertEquals(rover.getY(), 0);
+		
+
+		Tuple<Integer,Integer> obstacle = rover.move(Directions.FORWARD);
+		assertNull(obstacle);
+	}
+	
+	@Test
 	public void canAddObstaclesToMap() throws WrongMapValuesException {
 		Map map = new Map(10, 10);
 		assertFalse(map.hasObstacle(1, 2));
