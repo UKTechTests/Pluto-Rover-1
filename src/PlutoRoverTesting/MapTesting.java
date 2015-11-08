@@ -27,4 +27,12 @@ public class MapTesting {
 		assertEquals(map.getHeight(), height);
 		assertEquals(map.getWidth(), width);
 	}
+	
+	@Test
+	public void canAddObstaclesToMap() throws WrongMapValuesException {
+		Map map = new Map(10, 10);
+		assertFalse(map.hasObstacle(1, 2));
+		map.addObstacle(1, 2);
+		assertTrue(map.hasObstacle(1, 2));
+	}
 }
