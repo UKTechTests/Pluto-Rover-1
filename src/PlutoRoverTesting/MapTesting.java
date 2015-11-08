@@ -16,4 +16,15 @@ public class MapTesting {
 	public void creatingMapWithZeroValuesReturnsException() throws WrongMapValuesException {
 			Map map = new Map(0,0);
 	}
+	
+	@Test
+	public void assertThatMapHeightAndWidthAreCorrect() throws WrongMapValuesException {
+		int height = 5;
+		int width = 2;
+		
+		Map map = new Map(height, width);
+		
+		assertEquals(map.getHeight(), height);
+		assertEquals(map.getWidth(), width);
+	}
 }
