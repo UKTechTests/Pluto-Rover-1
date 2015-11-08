@@ -19,7 +19,7 @@ public class Map {
 		return map[0].length;
 	}
 	
-	private boolean contains(int x, int y) {
+	public boolean contains(int x, int y) {
 		if(x >= 0 && x < getHeight() && y >=0 && y < getWidth()) {
 			return true;
 		}

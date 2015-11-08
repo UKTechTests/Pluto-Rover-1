@@ -1,11 +1,18 @@
 package PlutoRoverTesting;
 
-import static org.junit.Assert.*;
-import PlutoRover.Map.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import org.jmock.Expectations;
+import org.jmock.Mockery;
 import org.junit.Test;
 
+import PlutoRover.Map.Map;
+import PlutoRover.Map.WrongMapValuesException;
+
 public class MapTesting {
+	Mockery context = new Mockery();
 
 	@Test(expected=WrongMapValuesException.class)
 	public void creatingMapWithNegativeValuesReturnsException() throws WrongMapValuesException {
@@ -35,4 +42,5 @@ public class MapTesting {
 		map.addObstacle(1, 2);
 		assertTrue(map.hasObstacle(1, 2));
 	}
+
 }
