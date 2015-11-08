@@ -10,11 +10,13 @@ public class Tuple<X,Y> {
 		this.second = second;
 	}
 	
-	private X getFst() {
+	public X getFst() {
 		return first;
 	}
 	
-	private Y getSnd() {
+	public Y getSnd() {
 		return second;
 	}
+	
+	
 }

@@ -12,8 +12,10 @@ public class Rover extends Vehicle {
 	}
 
 	@Override
-	public <X, Y> Tuple<X, Y> move(Directions direction) {
+	public Tuple<Integer, Integer> move(Directions direction) {
 		Cardinal currentDirection = getDirection();
+		int oldX = getX();
+		int oldY = getY();
 		
 		switch(direction) {
 			case FORWARD:
@@ -90,6 +92,13 @@ public class Rover extends Vehicle {
 			default:
 				break;
 		}
+		
+		if(map.hasObstacle(getX(),getY())) {
+			Tuple<Integer, Integer> obstacle = new Tuple<>(getX(), getY());
+			x = oldX;
+			y = oldY;
+			return obstacle;
+		}
 		wrapAround();
 		return null;
 	}
@@ -110,11 +119,6 @@ public class Rover extends Vehicle {
 		if(y < 0) {
 			y = map.getWidth() - 1;		
 		}
-	}
-
-	@Override
-	public <X, Y> Tuple<X, Y> processCommands(String commands) {
-		return null;
 	}
 
 }

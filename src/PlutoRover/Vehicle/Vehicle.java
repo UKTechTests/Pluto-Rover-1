@@ -47,8 +47,6 @@ public abstract class Vehicle {
 	}
 	
 	public abstract <X,Y> Tuple<X,Y> move(Directions direction);
-	
-	public abstract <X,Y> Tuple<X,Y> processCommands(String commands);
-	
+		
 	
 }
